@@ -115,30 +115,36 @@ export interface SocialLink {
 1. **组织品牌 (Brand Info)**:
    - **名称**: AIToBox (艾特智能)
    - **标语 (Slogan)**:
-     - 中文: 这里是一个关于在 AI 时代进行各种创作的探索实验田。
-     - 英文: *This is an experimental field for exploring various forms of creation in the AI era.*
+     - 中文: AI新发现-从这里起航
+     - 英文: *Discover AI Frontiers — Embark from Here.*
 
 2. **探索矩阵 - 核心软件项目 (Software Projects)**:
    - **ATBCmder**:
      - 描述: MacOS 平台的双面板文件管理利器 / *A powerful dual-pane file management tool for macOS*
+     - 属性: 商业私有项目（不公开源码）
      - 官网: `https://cmder.aitobox.com/`
      - 平台: `macOS`
-     - 标签: `['macOS', 'File Manager', 'Dual-pane', 'Utility']`
+     - 标签: `['macOS', 'File Manager', 'Dual-pane', 'Commercial']`
+     - 状态角标: `Commercial`
    - **ATBClone**:
      - 描述: MacOS 平台的 APP 分身工具 / *An App cloning tool for macOS*
-     - 源码: `https://github.com/aitobox/ATBClone`
+     - 属性: 开源项目
+     - 开源仓库: `https://github.com/aitobox/ATBClone`
      - 平台: `macOS`
      - 标签: `['macOS', 'App Clone', 'System', 'Open Source']`
+     - 状态角标: `Open Source`
    - **ATBNovel**:
      - 描述: 艾特智能写作工厂 - 用 AI 帮您创作长篇小说 / *AIToBox Writing Factory - Helping you create full-length novels with AI*
-     - 源码: `https://github.com/aitobox/ATBNovel`
-     - 标签: `['AI', 'Novel Writing', 'Creation', 'LLM']`
-     - 状态角标: `Active`
+     - 属性: 开源项目
+     - 开源仓库: `https://github.com/aitobox/ATBNovel`
+     - 标签: `['AI Writing', 'Novels', 'LLM', 'Open Source']`
+     - 状态角标: `Open Source`
    - **ATBard**:
      - 描述: 艾特朗诵家 - AI 技术构建的高保真文学朗诵与有声书配音平台 / *AIToBox Reciter - A high-fidelity literary recitation and audiobook dubbing platform built with AI technology*
-     - 源码: `https://github.com/aitobox/ATBard`
-     - 标签: `['AI Voice', 'TTS', 'Audiobook', 'Media']`
-     - 状态角标: `Active`
+     - 属性: 开源项目
+     - 开源仓库: `https://github.com/aitobox/ATBard`
+     - 标签: `['AI Voice', 'TTS', 'Audiobook', 'Open Source']`
+     - 状态角标: `Open Source`
 
 3. **探索矩阵 - 资讯与出版 (Publications)**:
    - **AIToBox 周刊 (AIToBox Weekly)**:

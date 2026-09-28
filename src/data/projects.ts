@@ -52,8 +52,8 @@ export interface SocialLink {
 export const brandInfo: BrandInfo = {
   name: 'AIToBox (艾特智能)',
   nameEn: 'AIToBox',
-  slogan: '这里是一个关于在AI时代进行各种创作的探索实验田',
-  sloganEn: 'This is an experimental field for exploring various forms of creation in the AI era.',
+  slogan: 'AI新发现-从这里起航',
+  sloganEn: 'Discover AI Frontiers — Embark from Here.',
 };
 
 export const softwareProjects: SoftwareProjectItem[] = [
@@ -64,10 +64,9 @@ export const softwareProjects: SoftwareProjectItem[] = [
     description: 'MacOS平台的双面板文件管理利器',
     descriptionEn: 'A powerful dual-pane file management tool for macOS',
     url: 'https://cmder.aitobox.com/',
-    github: 'https://github.com/aitobox/ATBCmder',
     platform: 'macOS',
-    tags: ['macOS', 'File Manager', 'Dual-pane', 'Utility'],
-    badge: 'Popular',
+    tags: ['macOS', 'File Manager', 'Dual-pane', 'Commercial'],
+    badge: 'Commercial',
     category: 'projects',
   },
   {
@@ -91,8 +90,8 @@ export const softwareProjects: SoftwareProjectItem[] = [
     descriptionEn: 'AIToBox Writing Factory - Helping you create full-length novels with AI',
     url: 'https://github.com/aitobox/ATBNovel',
     github: 'https://github.com/aitobox/ATBNovel',
-    tags: ['AI Writing', 'Novels', 'LLM', 'Creative'],
-    badge: 'Active',
+    tags: ['AI Writing', 'Novels', 'LLM', 'Open Source'],
+    badge: 'Open Source',
     category: 'projects',
   },
   {
@@ -103,8 +102,8 @@ export const softwareProjects: SoftwareProjectItem[] = [
     descriptionEn: 'AIToBox Reciter - A high-fidelity literary recitation and audiobook dubbing platform built with AI technology',
     url: 'https://github.com/aitobox/ATBard',
     github: 'https://github.com/aitobox/ATBard',
-    tags: ['AI Voice', 'TTS', 'Audiobook', 'Media'],
-    badge: 'Active',
+    tags: ['AI Voice', 'TTS', 'Audiobook', 'Open Source'],
+    badge: 'Open Source',
     category: 'projects',
   },
 ];

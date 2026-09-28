@@ -4,14 +4,22 @@ import { ui } from '../src/i18n/ui.ts';
 
 // 1. Verify Brand
 assert.ok(brandInfo.name.includes('AIToBox'), 'Brand name must include AIToBox');
-assert.ok(brandInfo.slogan, 'Brand slogan must be set');
+assert.equal(brandInfo.slogan, 'AI新发现-从这里起航', 'Brand slogan must match requested text');
 
 // 2. Verify Projects
 assert.equal(softwareProjects.length, 4, 'Must have 4 software projects');
-assert.ok(softwareProjects.some(p => p.id === 'atb-cmder'), 'ATBCmder missing');
-assert.ok(softwareProjects.some(p => p.id === 'atb-clone'), 'ATBClone missing');
-assert.ok(softwareProjects.some(p => p.id === 'atb-novel'), 'ATBNovel missing');
-assert.ok(softwareProjects.some(p => p.id === 'atb-bard'), 'ATBard missing');
+const cmder = softwareProjects.find(p => p.id === 'atb-cmder');
+assert.ok(cmder, 'ATBCmder missing');
+assert.equal(cmder.github, undefined, 'ATBCmder is private commercial, must not have github source link');
+
+const clone = softwareProjects.find(p => p.id === 'atb-clone');
+assert.ok(clone && clone.github, 'ATBClone must have github link');
+
+const novel = softwareProjects.find(p => p.id === 'atb-novel');
+assert.ok(novel && novel.github, 'ATBNovel must have github link');
+
+const bard = softwareProjects.find(p => p.id === 'atb-bard');
+assert.ok(bard && bard.github, 'ATBard must have github link');
 
 // 3. Verify Publications
 assert.equal(publications.length, 2, 'Must have 2 publications');
