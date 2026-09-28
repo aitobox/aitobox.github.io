@@ -30,6 +30,9 @@ AIToBox（艾特智能）是一个聚焦在 AI 时代进行多元创作的探索
   - AIToBox 周刊: `https://newsweekly.aitobox.com`
   - ATBInsight 资讯机器人: `https://insight.aitobox.com`
   - ATBCmder 终端管理: `https://cmder.aitobox.com`
+- **GitHub Pages 配置**:
+  - 部署来源 (Build and deployment source): **Deploy from a branch**
+  - 分支 (Branch): **`gh-pages`** / 根目录 **`/ (root)`**
 - **项目内配置**:
   - `public/CNAME` 包含单行内容：`aitobox.com`
 - **DNS 解析**:
@@ -266,9 +269,11 @@ src/
 
 ## 7. 部署与 CI/CD 规范
 
+通过 GitHub Actions 在推送到 `main` 分支时自动完成编译，并将产物发布到 **`gh-pages` 分支**。
+
 创建 `.github/workflows/deploy.yml`：
 ```yaml
-name: Deploy AIToBox Landing Page
+name: Build and Deploy to gh-pages
 
 on:
   push:
@@ -276,16 +281,14 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 concurrency:
   group: "pages"
   cancel-in-progress: false
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -295,6 +298,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: npm
 
       - name: Install dependencies
         run: npm ci || npm install
@@ -302,21 +306,12 @@ jobs:
       - name: Build Astro site
         run: npm run build
 
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Deploy to gh-pages branch
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          path: ./dist
-
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          cname: aitobox.com
 ```
 
 ---
