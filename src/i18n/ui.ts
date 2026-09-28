@@ -1,0 +1,61 @@
+export const languages = {
+  zh: '简体中文',
+  en: 'English',
+};
+
+export const defaultLang = 'zh';
+
+export const ui = {
+  zh: {
+    'nav.projects': '软件项目',
+    'nav.publications': '周刊资讯',
+    'nav.media': '播客与视频',
+    'nav.github': 'GitHub 组织',
+    'nav.toggleTheme': '切换明暗模式',
+    'nav.switchLang': 'English',
+    'hero.badge': '🚀 探索创作新边界',
+    'hero.cta.projects': '浏览项目矩阵',
+    'hero.cta.github': '访问 GitHub',
+    'section.projects.title': '核心项目 / Projects',
+    'section.projects.desc': 'MacOS 效率工具、AI 小说生成与高保真语音朗诵系统',
+    'section.publications.title': '资讯与出版 / Publications',
+    'section.publications.desc': '每周精选 AI 资讯、实用工具推荐与每日自动化资讯爬虫',
+    'section.publications.submit': '欢迎投稿推荐',
+    'section.media.title': '播客与视频 / Podcasts & Videos',
+    'section.media.desc': '深度商业逻辑观察栏目与一手海外最新 AI 视频教程',
+    'card.visit': '访问官网',
+    'card.github': '查看源码',
+    'card.listen': '立即收听',
+    'card.watch': '观看视频',
+    'footer.slogan': '这里是一个关于在AI时代进行各种创作的探索实验田。',
+    'footer.rights': '保留所有权利。',
+    'footer.domain': 'aitobox.com 官方网站',
+  },
+  en: {
+    'nav.projects': 'Projects',
+    'nav.publications': 'Publications',
+    'nav.media': 'Podcasts & Videos',
+    'nav.github': 'GitHub Org',
+    'nav.toggleTheme': 'Toggle Theme',
+    'nav.switchLang': '简体中文',
+    'hero.badge': '🚀 Exploring New Frontiers of Creation',
+    'hero.cta.projects': 'Explore Matrix',
+    'hero.cta.github': 'Visit GitHub',
+    'section.projects.title': 'Core Projects',
+    'section.projects.desc': 'macOS productivity tools, AI novel writing factory, and voice dubbing platforms',
+    'section.publications.title': 'Publications & News',
+    'section.publications.desc': 'Weekly curated AI news, tool recommendations, and daily automated crawler bot',
+    'section.publications.submit': 'Submit Recommendation',
+    'section.media.title': 'Podcasts & Videos',
+    'section.media.desc': 'In-depth commercial observation and latest global AI video tutorials',
+    'card.visit': 'Visit Website',
+    'card.github': 'Source Code',
+    'card.listen': 'Listen Now',
+    'card.watch': 'Watch Video',
+    'footer.slogan': 'An experimental field for exploring various forms of creation in the AI era.',
+    'footer.rights': 'All rights reserved.',
+    'footer.domain': 'aitobox.com Official Site',
+  },
+} as const;
+
+export const uiTranslations = ui;
