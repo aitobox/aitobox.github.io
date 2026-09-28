@@ -129,6 +129,7 @@ export interface SocialLink {
    - **ATBClone**:
      - 描述: MacOS 平台的 APP 分身工具 / *An App cloning tool for macOS*
      - 属性: 开源项目
+     - 官网: `https://clone.aitobox.com`
      - 开源仓库: `https://github.com/aitobox/ATBClone`
      - 平台: `macOS`
      - 标签: `['macOS', 'App Clone', 'System', 'Open Source']`

@@ -14,6 +14,7 @@ assert.equal(cmder.github, undefined, 'ATBCmder is private commercial, must not 
 
 const clone = softwareProjects.find(p => p.id === 'atb-clone');
 assert.ok(clone && clone.github, 'ATBClone must have github link');
+assert.equal(clone.url, 'https://clone.aitobox.com', 'ATBClone website must be https://clone.aitobox.com');
 
 const novel = softwareProjects.find(p => p.id === 'atb-novel');
 assert.ok(novel && novel.github, 'ATBNovel must have github link');

@@ -75,7 +75,7 @@ export const softwareProjects: SoftwareProjectItem[] = [
     nameEn: 'ATBClone',
     description: 'MacOS平台的APP分身工具',
     descriptionEn: 'An App cloning tool for macOS',
-    url: 'https://github.com/aitobox/ATBClone',
+    url: 'https://clone.aitobox.com',
     github: 'https://github.com/aitobox/ATBClone',
     platform: 'macOS',
     tags: ['macOS', 'App Clone', 'System', 'Open Source'],
