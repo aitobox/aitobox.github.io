@@ -1,6 +1,5 @@
 ---
 import type { MediaItem } from '../data/projects';
-import { useTranslations } from '../i18n/utils';
 
 interface Props {
   item: MediaItem;
@@ -8,7 +7,6 @@ interface Props {
 }
 
 const { item, lang } = Astro.props;
-const t = useTranslations(lang);
 const name = lang === 'en' && item.nameEn ? item.nameEn : item.name;
 const quote = lang === 'en' ? item.quote.en : item.quote.zh;
 ---

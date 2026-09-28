@@ -1,0 +1,75 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from './Navbar.astro';
+import Hero from './Hero.astro';
+import SectionHeader from './SectionHeader.astro';
+import ProjectCard from './ProjectCard.astro';
+import PublicationCard from './PublicationCard.astro';
+import MediaCard from './MediaCard.astro';
+import Footer from './Footer.astro';
+import { brandInfo, softwareProjects, publications, mediaItems } from '../data/projects';
+import { useTranslations } from '../i18n/utils';
+
+interface Props {
+  lang: 'zh' | 'en';
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const pageTitle = `${brandInfo.name} - ${lang === 'en' ? brandInfo.sloganEn : brandInfo.slogan}`;
+const pageDesc = lang === 'en' ? brandInfo.sloganEn : brandInfo.slogan;
+---
+
+<Layout title={pageTitle} description={pageDesc} lang={lang}>
+  <Navbar lang={lang} />
+
+  <main>
+    <Hero lang={lang} />
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20 py-8">
+      <!-- 1. Software Projects -->
+      <section>
+        <SectionHeader
+          id="projects"
+          title={t('section.projects.title')}
+          description={t('section.projects.desc')}
+        />
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+          {softwareProjects.map(project => (
+            <ProjectCard project={project} lang={lang} />
+          ))}
+        </div>
+      </section>
+
+      <!-- 2. Publications -->
+      <section>
+        <SectionHeader
+          id="publications"
+          title={t('section.publications.title')}
+          description={t('section.publications.desc')}
+        />
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {publications.map(item => (
+            <PublicationCard item={item} lang={lang} />
+          ))}
+        </div>
+      </section>
+
+      <!-- 3. Podcasts & Videos -->
+      <section>
+        <SectionHeader
+          id="media"
+          title={t('section.media.title')}
+          description={t('section.media.desc')}
+        />
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {mediaItems.map(item => (
+            <MediaCard item={item} lang={lang} />
+          ))}
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <Footer lang={lang} />
+</Layout>
