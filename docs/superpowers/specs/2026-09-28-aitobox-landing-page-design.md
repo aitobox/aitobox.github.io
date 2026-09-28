@@ -42,12 +42,14 @@ AIToBox（艾特智能）是一个聚焦在 AI 时代进行多元创作的探索
 
 ### 3.1 核心技术栈
 - **SSG 框架**: Astro (v4+) - 纯静态渲染（0 客户端 JS 运行时开销，首屏瞬间触达）
+- **国际化引擎 (i18n)**: Astro 内置原生 i18n 路由 (`defaultLocale: 'zh'`, `locales: ['zh', 'en']`)
 - **样式方案**: Tailwind CSS - 实用类优先，兼顾轻量与高度定制性
 - **开发语言**: TypeScript - 数据结构强类型约束
 - **部署环境**: GitHub Actions + GitHub Pages 原生 Deployment Artifacts
 
 ### 3.2 架构原则
 - **数据驱动 (Data-Driven)**: 页面所有展示内容（项目、媒体、周刊、外部链接）全部通过声明式数据文件驱动，未来修改或新增项目仅需编辑单一数据文件，无需修改组件或页面结构。
+- **全站原生双语 (First-class i18n)**: 默认中文路径 `/`，英文路径 `/en/`；UI 字典与数据字段彻底解耦，提供无缝语言切换与标准 `hreflang` SEO 标签。
 - **明暗自适应 (Theme Adaptive)**: 默认支持跟随操作系统偏好，提供无缝的主动切换按钮，内联首屏防闪烁（Anti-FOUC）脚本。
 - **零冗余 (YAGNI & Zero Slop)**: 剔除不必要的重型运行时与框架依赖，专注纯粹的内容呈现与极致的加载速度。
 
@@ -176,30 +178,65 @@ export interface SocialLink {
 ```
 src/
 ├── components/
-│   ├── Navbar.astro           # 顶部品牌导航、社交外链（GitHub、X）、明暗切换入口
+│   ├── Navbar.astro           # 顶部品牌导航、社交外链、语言切换、明暗切换入口
 │   ├── ThemeToggle.astro      # 明暗自适应切换按钮
-│   ├── Hero.astro             # 品牌中英双语介绍与核心愿景展示
-│   ├── SectionHeader.astro    # 通用模块标题组件（中英文双语）
+│   ├── LanguageToggle.astro   # 中英语言切换按钮 (ZH / EN)
+│   ├── Hero.astro             # 品牌介绍与核心愿景展示 (根据语言渲染)
+│   ├── SectionHeader.astro    # 通用模块标题组件
 │   ├── ProjectCard.astro      # 软件工具卡片（悬停微交互、平台徽章、外链）
 │   ├── PublicationCard.astro  # 资讯/周刊卡片（支持投稿 Issue 快捷入口）
 │   ├── MediaCard.astro        # 播客与音视频卡片（多平台徽章与金句展示）
 │   ├── SocialLinks.astro      # 社交媒体图标与链接组件（支持高亮悬停效果）
+│   ├── MainPage.astro         # 页面主体布局与数据组装容器 (接收 lang 参数，保持 100% DRY)
 │   └── Footer.astro           # 版权信息、完整社交矩阵、aitobox.com 域名规范标识
 ├── data/
-│   └── projects.ts            # 全量项目与内容强类型数据文件
+│   └── projects.ts            # 全量项目与内容强类型双语数据文件
+├── i18n/
+│   ├── ui.ts                  # UI 静态多语言字典 (导航、按钮、模块标题、标签)
+│   └── utils.ts               # 多语言辅助函数 (useTranslations, getLocalizedPath)
 ├── layouts/
-│   └── Layout.astro           # 统一 HTML 骨架、防闪烁 Script、SEO OpenGraph
+│   └── Layout.astro           # 统一 HTML 骨架、防闪烁 Script、SEO OpenGraph 与 hreflang
 └── pages/
-    └── index.astro            # 落地页核心入口
+    ├── index.astro            # 默认中文落地页 (/)
+    └── en/
+        └── index.astro        # 英文落地页 (/en/)
 ```
 
 ### 5.1 页面排版顺序
-1. **Header / Navbar**: 品牌标识 + 快速跳转锚点 + 核心社交外链 (GitHub, X) + Theme Toggle
+1. **Header / Navbar**: 品牌标识 + 快速跳转锚点 + 核心社交外链 (GitHub, X) + Language Toggle (ZH/EN) + Theme Toggle
 2. **Hero Section**: 品牌名称 + 核心实验田双语理念 + 快速定位 CTA
 3. **Section 1: 软件与工具探索 (Projects)**: 4 个核心工具卡片网格
 4. **Section 2: 资讯与知识库 (Publications)**: 周刊 + Insight 爬虫机器人
 5. **Section 3: 播客与视频视界 (Podcasts & Videos)**: 硅基商谈 + AI资讯教程（突出深度理性视角）
 6. **Footer**: 完整社交矩阵 (X, YouTube, 知乎, B站, GitHub)、域名声明 `aitobox.com`、开源协议、版权信息与社区投稿直达
+
+### 5.2 国际化 (i18n) 架构与路由实现
+1. **Astro 官方原生路由机制**:
+   ```javascript
+   // astro.config.mjs
+   export default defineConfig({
+     i18n: {
+       defaultLocale: 'zh',
+       locales: ['zh', 'en'],
+       routing: {
+         prefixDefaultLocale: false, // 默认中文在根路径 /，英文在 /en/
+       },
+     },
+   });
+   ```
+2. **零重复代码 (DRY) 设计**:
+   - `src/components/MainPage.astro` 承载完整的页面结构、动画与网格组合，接收 `{ lang: 'zh' | 'en' }`。
+   - `src/pages/index.astro` 仅渲染 `<MainPage lang="zh" />`。
+   - `src/pages/en/index.astro` 仅渲染 `<MainPage lang="en" />`。
+3. **双语内容与词典分离**:
+   - 界面通用文案（导航、筛选标签、CTA 文本、Footer 说明）由 `src/i18n/ui.ts` 集中管理。
+   - 项目动态内容（标题、描述、Quote）在 `src/data/projects.ts` 中以字段形式对照存储，通过 `getLocalizedProjects(lang)` 极速按需渲染。
+4. **SEO 与搜索引擎规范**:
+   - 在 `Layout.astro` 的 `<head>` 中根据当前路径自动注入双向链接：
+     - `<link rel="alternate" hreflang="zh" href="https://aitobox.com/" />`
+     - `<link rel="alternate" hreflang="en" href="https://aitobox.com/en/" />`
+     - `<link rel="alternate" hreflang="x-default" href="https://aitobox.com/" />`
+   - 动态同步 `<html lang="zh-CN">` 或 `<html lang="en">`，优化全球搜索引擎索引与无障碍屏幕阅读器体验。
 
 ---
 
