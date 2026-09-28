@@ -1,0 +1,21 @@
+---
+import { getLocalizedPath } from '../i18n/utils';
+
+interface Props {
+  currentLang: 'zh' | 'en';
+}
+
+const { currentLang } = Astro.props;
+const currentPath = Astro.url.pathname;
+const targetLang = currentLang === 'zh' ? 'en' : 'zh';
+const targetPath = getLocalizedPath(currentPath, targetLang);
+const targetLabel = currentLang === 'zh' ? 'EN' : '中';
+---
+
+<a
+  href={targetPath}
+  class="inline-flex items-center justify-center px-2.5 py-1 text-xs font-semibold rounded-md border border-slate-300 dark:border-zinc-700 text-slate-700 dark:text-zinc-300 hover:bg-slate-100 dark:hover:bg-zinc-800 transition-colors"
+  title={currentLang === 'zh' ? 'Switch to English' : '切换到简体中文'}
+>
+  {targetLabel}
+</a>

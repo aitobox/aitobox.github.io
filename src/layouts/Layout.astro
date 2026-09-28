@@ -1,0 +1,67 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  lang: 'zh' | 'en';
+}
+
+const { title, description, lang } = Astro.props;
+const siteUrl = 'https://aitobox.com';
+const canonicalURL = new URL(Astro.url.pathname, siteUrl);
+const zhURL = new URL('/', siteUrl);
+const enURL = new URL('/en/', siteUrl);
+---
+
+<!doctype html>
+<html lang={lang === 'zh' ? 'zh-CN' : 'en'}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- i18n Alternates -->
+    <link rel="alternate" hreflang="zh-CN" href={zhURL} />
+    <link rel="alternate" hreflang="en" href={enURL} />
+    <link rel="alternate" hreflang="x-default" href={zhURL} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@AiTobox" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <!-- Anti-FOUC Theme Script -->
+    <script is:inline>
+      const theme = (() => {
+        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+          return localStorage.getItem('theme');
+        }
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      })();
+
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+      window.localStorage.setItem('theme', theme);
+    </script>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

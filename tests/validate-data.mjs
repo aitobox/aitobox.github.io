@@ -37,4 +37,16 @@ zhKeys.forEach(key => {
   assert.ok(ui.en[key], `Missing en translation for key: ${key}`);
 });
 
+// 7. Verify getLocalizedPath
+import { getLocalizedPath } from '../src/i18n/utils.ts';
+assert.equal(getLocalizedPath('/', 'en'), '/en');
+assert.equal(getLocalizedPath('/en', 'en'), '/en');
+assert.equal(getLocalizedPath('/en/', 'en'), '/en/');
+assert.equal(getLocalizedPath('/en', 'zh'), '/');
+assert.equal(getLocalizedPath('/en/', 'zh'), '/');
+assert.equal(getLocalizedPath('/en/about', 'zh'), '/about');
+assert.equal(getLocalizedPath('/about', 'en'), '/en/about');
+assert.equal(getLocalizedPath('/enterprise', 'zh'), '/enterprise');
+assert.equal(getLocalizedPath('/enterprise', 'en'), '/en/enterprise');
+
 console.log('✓ All data and i18n validations passed successfully!');

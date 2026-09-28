@@ -1,4 +1,4 @@
-import { ui, defaultLang } from './ui';
+import { ui, defaultLang } from './ui.ts';
 
 export function useTranslations(lang: keyof typeof ui) {
   return function t(key: keyof (typeof ui)[typeof defaultLang]): string {
@@ -7,7 +7,7 @@ export function useTranslations(lang: keyof typeof ui) {
 }
 
 export function getLocalizedPath(currentPath: string, targetLang: 'zh' | 'en'): string {
-  const isEn = currentPath.startsWith('/en');
+  const isEn = currentPath === '/en' || currentPath.startsWith('/en/');
   if (targetLang === 'en') {
     if (isEn) return currentPath;
     return `/en${currentPath === '/' ? '' : currentPath}`;
@@ -18,4 +18,4 @@ export function getLocalizedPath(currentPath: string, targetLang: 'zh' | 'en'): 
   }
 }
 
-export { getLocalizedProjects } from '../data/projects';
+export { getLocalizedProjects } from '../data/projects.ts';
