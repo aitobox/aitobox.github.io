@@ -30,6 +30,7 @@ export const ui = {
     'footer.slogan': '汇聚智能，启发未来。',
     'footer.rights': '保留所有权利。',
     'footer.domain': 'aitobox.com 官方网站',
+    'footer.icp': '沪ICP备2021029191号',
   },
   en: {
     'nav.projects': 'Projects',
@@ -55,6 +56,7 @@ export const ui = {
     'footer.slogan': 'Converging Intelligence, Inspiring the Future.',
     'footer.rights': 'All rights reserved.',
     'footer.domain': 'aitobox.com Official Site',
+    'footer.icp': '沪ICP备2021029191号',
   },
 } as const;
 

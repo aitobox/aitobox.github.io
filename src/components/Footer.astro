@@ -33,7 +33,18 @@ const currentYear = new Date().getFullYear();
     </div>
 
     <div class="mt-8 pt-8 border-t border-slate-200/80 dark:border-zinc-800/60 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-zinc-500">
-      <p>© {currentYear} AIToBox. {t('footer.rights')}</p>
+      <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+        <p>© {currentYear} AIToBox. {t('footer.rights')}</p>
+        <span class="text-slate-300 dark:text-zinc-700 hidden sm:inline">|</span>
+        <a
+          href="https://beian.miit.gov.cn/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hover:text-slate-800 dark:hover:text-zinc-300 transition-colors"
+        >
+          {t('footer.icp')}
+        </a>
+      </div>
       <p class="font-mono">{t('footer.domain')}</p>
     </div>
   </div>
