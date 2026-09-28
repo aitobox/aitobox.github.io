@@ -1,0 +1,75 @@
+---
+import type { SoftwareProjectItem } from '../data/projects';
+import { useTranslations } from '../i18n/utils';
+
+interface Props {
+  project: SoftwareProjectItem;
+  lang: 'zh' | 'en';
+}
+
+const { project, lang } = Astro.props;
+const t = useTranslations(lang);
+const name = lang === 'en' && project.nameEn ? project.nameEn : project.name;
+const description = lang === 'en' && project.descriptionEn ? project.descriptionEn : project.description;
+---
+
+<div class="group relative flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-zinc-900/70 border border-slate-200/90 dark:border-zinc-800 hover:border-indigo-400 dark:hover:border-indigo-500/60 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+  <div>
+    <!-- Card Top: Badge & Platform -->
+    <div class="flex items-center justify-between gap-2 mb-4">
+      {project.badge && (
+        <span class="px-2.5 py-0.5 text-xs font-semibold rounded-full bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-800/50">
+          {project.badge}
+        </span>
+      )}
+      {project.platform && (
+        <span class="text-[11px] font-mono text-slate-400 dark:text-zinc-500">
+          {project.platform}
+        </span>
+      )}
+    </div>
+
+    <!-- Title & Desc -->
+    <h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+      <a href={project.url} target="_blank" rel="noopener noreferrer" class="focus:outline-none">
+        {name}
+      </a>
+    </h3>
+    <p class="mt-2.5 text-sm text-slate-600 dark:text-zinc-400 leading-relaxed">
+      {description}
+    </p>
+
+    <!-- Tags -->
+    <div class="mt-4 flex flex-wrap gap-1.5">
+      {project.tags.map(tag => (
+        <span class="px-2 py-0.5 text-[11px] font-medium rounded bg-slate-100 dark:bg-zinc-800 text-slate-600 dark:text-zinc-400">
+          #{tag}
+        </span>
+      ))}
+    </div>
+  </div>
+
+  <!-- Links Footer -->
+  <div class="mt-6 pt-4 border-t border-slate-100 dark:border-zinc-800/80 flex items-center justify-between text-xs font-medium">
+    <a
+      href={project.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center gap-1 text-indigo-600 dark:text-indigo-400 hover:underline"
+    >
+      <span>{t('card.visit')}</span>
+      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+    </a>
+
+    {project.github && project.github !== project.url && (
+      <a
+        href={project.github}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white inline-flex items-center gap-1"
+      >
+        <span>{t('card.github')}</span>
+      </a>
+    )}
+  </div>
+</div>

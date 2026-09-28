@@ -44,9 +44,11 @@ const enURL = new URL('/en/', siteUrl);
     <!-- Anti-FOUC Theme Script -->
     <script is:inline>
       const theme = (() => {
-        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-          return localStorage.getItem('theme');
-        }
+        try {
+          if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+            return localStorage.getItem('theme');
+          }
+        } catch (_) {}
         if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
           return 'dark';
         }
@@ -58,7 +60,9 @@ const enURL = new URL('/en/', siteUrl);
       } else {
         document.documentElement.classList.remove('dark');
       }
-      window.localStorage.setItem('theme', theme);
+      try {
+        window.localStorage.setItem('theme', theme);
+      } catch (_) {}
     </script>
   </head>
   <body>

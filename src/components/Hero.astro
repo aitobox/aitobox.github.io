@@ -1,0 +1,52 @@
+---
+import { brandInfo } from '../data/projects';
+import { useTranslations } from '../i18n/utils';
+
+interface Props {
+  lang: 'zh' | 'en';
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const slogan = lang === 'en' ? brandInfo.sloganEn : brandInfo.slogan;
+---
+
+<section class="relative pt-20 pb-16 md:pt-28 md:pb-24 overflow-hidden">
+  <!-- Subtle Glow Effect -->
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-gradient-to-tr from-indigo-500/10 via-cyan-500/10 to-transparent blur-3xl -z-10 rounded-full pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <!-- Tag Pill -->
+    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-medium bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 border border-indigo-200/60 dark:border-indigo-800/60 mb-6 shadow-sm">
+      <span>{t('hero.badge')}</span>
+    </div>
+
+    <!-- Title -->
+    <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-6">
+      AIToBox <span class="bg-gradient-to-r from-indigo-600 to-cyan-500 bg-clip-text text-transparent">{lang === 'zh' ? '艾特智能' : 'Studio'}</span>
+    </h1>
+
+    <!-- Slogan -->
+    <p class="max-w-2xl mx-auto text-lg sm:text-xl text-slate-600 dark:text-zinc-300 leading-relaxed mb-10">
+      {slogan}
+    </p>
+
+    <!-- CTAs -->
+    <div class="flex flex-wrap items-center justify-center gap-4">
+      <a
+        href="#projects"
+        class="inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold text-white bg-indigo-600 hover:bg-indigo-700 shadow-md hover:shadow-indigo-500/25 transition-all"
+      >
+        {t('hero.cta.projects')}
+      </a>
+      <a
+        href="https://github.com/aitobox"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold text-slate-700 dark:text-zinc-200 bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 hover:bg-slate-50 dark:hover:bg-zinc-800/80 transition-all shadow-sm"
+      >
+        {t('hero.cta.github')}
+      </a>
+    </div>
+  </div>
+</section>
