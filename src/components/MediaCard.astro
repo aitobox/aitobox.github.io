@@ -13,9 +13,11 @@ const quote = lang === 'en' ? item.quote.en : item.quote.zh;
 
 <div class="p-6 rounded-2xl bg-white dark:bg-zinc-900/70 border border-slate-200/90 dark:border-zinc-800 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
   <div class="flex items-center justify-between mb-4">
-    <span class="px-2.5 py-0.5 text-xs font-semibold rounded-full bg-purple-50 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400 border border-purple-200 dark:border-purple-800/50">
-      {item.badge}
-    </span>
+    {item.badge && (
+      <span class="px-2.5 py-0.5 text-xs font-semibold rounded-full bg-purple-50 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400 border border-purple-200 dark:border-purple-800/50">
+        {item.badge}
+      </span>
+    )}
     <div class="flex gap-2">
       {item.platforms.map(p => (
         <a
