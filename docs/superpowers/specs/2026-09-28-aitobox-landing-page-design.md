@@ -115,8 +115,8 @@ export interface SocialLink {
 1. **组织品牌 (Brand Info)**:
    - **名称**: AIToBox (艾特智能)
    - **标语 (Slogan)**:
-     - 中文: AI新发现-从这里起航
-     - 英文: *Discover AI Frontiers — Embark from Here.*
+     - 中文: 汇聚智能，启发未来
+     - 英文: *Converging Intelligence, Inspiring the Future.*
 
 2. **探索矩阵 - 核心软件项目 (Software Projects)**:
    - **ATBCmder**:

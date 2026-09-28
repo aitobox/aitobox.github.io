@@ -4,7 +4,7 @@ import { ui } from '../src/i18n/ui.ts';
 
 // 1. Verify Brand
 assert.ok(brandInfo.name.includes('AIToBox'), 'Brand name must include AIToBox');
-assert.equal(brandInfo.slogan, 'AI新发现-从这里起航', 'Brand slogan must match requested text');
+assert.equal(brandInfo.slogan, '汇聚智能，启发未来', 'Brand slogan must match requested text');
 
 // 2. Verify Projects
 assert.equal(softwareProjects.length, 4, 'Must have 4 software projects');

@@ -52,8 +52,8 @@ export interface SocialLink {
 export const brandInfo: BrandInfo = {
   name: 'AIToBox (艾特智能)',
   nameEn: 'AIToBox',
-  slogan: 'AI新发现-从这里起航',
-  sloganEn: 'Discover AI Frontiers — Embark from Here.',
+  slogan: '汇聚智能，启发未来',
+  sloganEn: 'Converging Intelligence, Inspiring the Future.',
 };
 
 export const softwareProjects: SoftwareProjectItem[] = [
