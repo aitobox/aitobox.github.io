@@ -97,6 +97,12 @@ export interface SoftwareProjectItem extends BaseItem {
   category: 'projects';
   platform?: 'macOS' | 'Cross-platform' | 'Web';
 }
+
+export interface SocialLink {
+  platform: 'x' | 'youtube' | 'zhihu' | 'bilibili' | 'github';
+  label: string;
+  url: string;
+}
 ```
 
 ### 4.2 初始内容矩阵梳理
@@ -155,6 +161,14 @@ export interface SoftwareProjectItem extends BaseItem {
      - 核心定位 Quote:
        > 第一时间同步国外最新的 AI 资讯、技术和工具。
 
+
+5. **官方社交账号与社区 (Social & Community)**:
+   - **X (Twitter)**: `https://x.com/AiTobox`
+   - **YouTube**: `https://www.youtube.com/@AiToBox`
+   - **知乎 (Zhihu)**: `https://www.zhihu.com/people/aitobox`
+   - **Bilibili (B站)**: `https://space.bilibili.com/1957706676`
+   - **GitHub**: `https://github.com/aitobox`
+
 ---
 
 ## 5. 组件分层设计与页面结构
@@ -162,14 +176,15 @@ export interface SoftwareProjectItem extends BaseItem {
 ```
 src/
 ├── components/
-│   ├── Navbar.astro           # 顶部品牌导航、外部 GitHub 链接、明暗切换入口
+│   ├── Navbar.astro           # 顶部品牌导航、社交外链（GitHub、X）、明暗切换入口
 │   ├── ThemeToggle.astro      # 明暗自适应切换按钮
 │   ├── Hero.astro             # 品牌中英双语介绍与核心愿景展示
 │   ├── SectionHeader.astro    # 通用模块标题组件（中英文双语）
 │   ├── ProjectCard.astro      # 软件工具卡片（悬停微交互、平台徽章、外链）
 │   ├── PublicationCard.astro  # 资讯/周刊卡片（支持投稿 Issue 快捷入口）
 │   ├── MediaCard.astro        # 播客与音视频卡片（多平台徽章与金句展示）
-│   └── Footer.astro           # 版权信息、友情链接、aitobox.com 域名规范标识
+│   ├── SocialLinks.astro      # 社交媒体图标与链接组件（支持高亮悬停效果）
+│   └── Footer.astro           # 版权信息、完整社交矩阵、aitobox.com 域名规范标识
 ├── data/
 │   └── projects.ts            # 全量项目与内容强类型数据文件
 ├── layouts/
@@ -179,12 +194,12 @@ src/
 ```
 
 ### 5.1 页面排版顺序
-1. **Header / Navbar**: 品牌标识 + 快速跳转锚点 + GitHub Org 直达 + Theme Toggle
+1. **Header / Navbar**: 品牌标识 + 快速跳转锚点 + 核心社交外链 (GitHub, X) + Theme Toggle
 2. **Hero Section**: 品牌名称 + 核心实验田双语理念 + 快速定位 CTA
 3. **Section 1: 软件与工具探索 (Projects)**: 4 个核心工具卡片网格
 4. **Section 2: 资讯与知识库 (Publications)**: 周刊 + Insight 爬虫机器人
 5. **Section 3: 播客与视频视界 (Podcasts & Videos)**: 硅基商谈 + AI资讯教程（突出深度理性视角）
-6. **Footer**: 域名声明 `aitobox.com`、开源协议、版权信息与社区投稿直达
+6. **Footer**: 完整社交矩阵 (X, YouTube, 知乎, B站, GitHub)、域名声明 `aitobox.com`、开源协议、版权信息与社区投稿直达
 
 ---
 
