@@ -1,17 +1,46 @@
-# Build output
-dist/
-.astro/
-
 # Dependencies
 node_modules/
+.pnpm-store/
 
-# Environment
+# Build Outputs & Framework Cache
+dist/
+.astro/
+.cache/
+*.tsbuildinfo
+
+# Logs & Diagnostics
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment & Local Secrets
 .env
 .env.*
 !.env.example
 
-# OS / Editor
+# macOS System Files
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows System Files
 Thumbs.db
-.vscode/
+ehthumbs.db
+[Dd]esktop.ini
+
+# IDE & Editor Configurations
 .idea/
+.vscode/
+*.swp
+*.swo
+*~
+*.sublime-workspace
+*.sublime-project
+
+# AI Agents & Superpowers Workspaces
+.superpowers/
+.antigravity/
